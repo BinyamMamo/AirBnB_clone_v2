@@ -14,7 +14,7 @@ class FileStorage:
 			return FileStorage.__objects
 		filtered = {}
 		for key, obj in self.__objects:
-			if (isinstance(obj, cls)):
+			if isinstance(obj, cls):
 				filtered.update(key, obj)
 		return filtered
 
@@ -57,8 +57,7 @@ class FileStorage:
 
 	def delete(self, obj=None):
 		"""Deletes an object from __objects if it exists"""
-		if obj is None:
-			return
-		for _obj in self.__objects:
-			if _obj == obj:
-				del _obj
+		if obj is not None:
+			for key, _obj in self.__objects:
+				if _obj == obj:
+					del _obj
