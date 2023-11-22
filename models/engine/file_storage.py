@@ -14,13 +14,15 @@ class FileStorage:
 			return FileStorage.__objects
 		filtered = {}
 		for key, obj in self.__objects:
-			if isinstance(obj, cls):
+			if (key.split(".")[0] == cls.__name__):
 				filtered.update(key, obj)
 		return filtered
 
 	def new(self, obj):
 		"""Adds new object to storage dictionary"""
-		self.all().update({obj.to_dict()['__class__'] + '.' + obj.id: obj})
+		self.all().update({# `obj.to_dict()['__class__']` is accessing the `__class__` attribute of the
+		# dictionary returned by the `to_dict()` method of the `obj` object.
+		obj.to_dict()['__class__'] + '.' + obj.id: obj})
 
 	def save(self):
 		"""Saves storage dictionary to file"""
@@ -57,7 +59,5 @@ class FileStorage:
 
 	def delete(self, obj=None):
 		"""Deletes an object from __objects if it exists"""
-		if obj is not None:
-			for key, _obj in self.__objects:
-				if _obj == obj:
-					del _obj
+		if (obj is not None):
+			FileStorage.__objects.pop("{}.{}".format(type(obj).__name__, obj.id))
