@@ -15,7 +15,7 @@ class FileStorage:
         filtered = {}
         for key, obj in self.__objects:
             if (key.split(".")[0] == cls.__name__):
-                filtered.update(key, obj)
+                filtered.update({key: obj})
         return filtered
 
     def new(self, obj):
