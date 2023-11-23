@@ -13,7 +13,7 @@ class FileStorage:
         if cls is None:
             return FileStorage.__objects
         filtered = {}
-        for key, obj in self.__objects:
+        for key, obj in self.__objects.items():
             if (key.split(".")[0] == cls.__name__):
                 filtered.update({key: obj})
         return filtered
