@@ -10,7 +10,8 @@ from datetime import datetime
 
 
 def do_pack():
-    """distributes an archive to your web servers
+    """
+    archive distribution
     """
     target = local("mkdir -p versions")
     name = str(datetime.now()).replace(" ", '')
