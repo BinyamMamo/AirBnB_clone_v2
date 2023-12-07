@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 # prepares the web server for deployment
 
-apt update
-apt install nginx -y
+sudo apt update -y
+sudo apt install nginx -y
 
-mkdir -p /data/web_static/releases/test
-mkdir -p /data/web_static/shared/
+sudo mkdir -p /data/web_static/releases/test
+sudo mkdir -p /data/web_static/shared/
 chown ubuntu:ubuntu -R /data
 
 echo "hello world" > /data/web_static/releases/test/index.html
 
-ln -sf /data/web_static/releases/test/ /data/web_static/current
+sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
 
 echo "
 server {
@@ -22,6 +22,6 @@ server {
 }
 " > /etc/nginx/sites-available/hbnb_static.conf
 
-ln -sf /etc/nginx/sites-available/hbnb_static.conf /etc/nginx/sites-enabled/hbnb_static.conf
+sudo ln -sf /etc/nginx/sites-available/hbnb_static.conf /etc/nginx/sites-enabled/hbnb_static.conf
 
-service nginx restart
+sudo service nginx restart
