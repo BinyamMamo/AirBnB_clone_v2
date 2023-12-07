@@ -4,15 +4,15 @@
 config="\n\tlocation /hbnb_static {\n\t\talias /data/web_static/current/;\n\t}"
 file="/etc/nginx/sites-available/default"
 
-apt-get update
-apt-get install nginx -y
+sudo apt-get update
+sudo apt-get install nginx -y
 
-mkdir -p "/data/web_static/releases/test/"
-mkdir "/data/web_static/shared/"
-chown -hR ubuntu:ubuntu "/data/"
+sudo mkdir -p "/data/web_static/releases/test/"
+sudo mkdir "/data/web_static/shared/"
+sudo chown -hR ubuntu:ubuntu "/data/"
 ln -sf "/data/web_static/releases/test/" "/data/web_static/current"
 
 echo "Hello world" > "/data/web_static/releases/test/index.html"
-sed -i "29i\ $config" "$file"
+sudo sed -i "29i\ $config" "$file"
 
-service nginx restart
+sudo service nginx restart
