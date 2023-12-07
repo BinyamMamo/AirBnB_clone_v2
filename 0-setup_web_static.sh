@@ -1,3 +1,6 @@
+#!/usr/bin/env bash
+# prepares the web servers for AirBnb static
+
 config="\n\tlocation /hbnb_static {\n\t\talias /data/web_static/current/;\n\t}"
 file="/etc/nginx/sites-available/default"
 
