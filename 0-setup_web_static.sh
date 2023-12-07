@@ -1,27 +1,15 @@
-#!/usr/bin/env bash
-# prepares the web server for deployment
+config="\n\tlocation /hbnb_static {\n\t\talias /data/web_static/current/;\n\t}"
+file="/etc/nginx/sites-available/default"
 
-sudo apt update -y
-sudo apt install nginx -y
+apt-get update
+apt-get install nginx -y
 
-sudo mkdir -p /data/web_static/releases/test
-sudo mkdir -p /data/web_static/shared/
-chown ubuntu:ubuntu -R /data
+mkdir -p "/data/web_static/releases/test/"
+mkdir "/data/web_static/shared/"
+chown -hR ubuntu:ubuntu "/data/"
+ln -sf "/data/web_static/releases/test/" "/data/web_static/current"
 
-echo "hello world" > /data/web_static/releases/test/index.html
+echo "Hello world" > "/data/web_static/releases/test/index.html"
+sed -i "29i\ $config" "$file"
 
-sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
-
-echo "
-server {
-	listen 80;
-	server_name www.binyammamo.tech;
-	location /hbnb_static {
-		alias /data/web_static/current/;
-	}
-}
-" > /etc/nginx/sites-available/hbnb_static.conf
-
-sudo ln -sf /etc/nginx/sites-available/hbnb_static.conf /etc/nginx/sites-enabled/hbnb_static.conf
-
-sudo service nginx restart
+service nginx restart
