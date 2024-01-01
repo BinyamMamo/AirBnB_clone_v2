@@ -42,9 +42,10 @@ def show_state(id):
      Return: HTML to display the state
     """
     states = storage.all(State)
-    if states["State." + id]:
+    key = "State." + id
+    if key in states:
         return render_template("9-states.html",
-                               state=states["State." + id],
+                               state=states[key],
                                route="state")
     return render_template("9-states.html", route="abort")
 
