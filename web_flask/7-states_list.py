@@ -28,7 +28,7 @@ def list_states():
     states = []
     for key, value in storage.all(State).items():
         states.append(value)
-    states.sort(key=lambda state: state.name, reverse=True)
+    states.sort(key=lambda state: state.name)
     return render_template("7-states_list.html", states=states)
 
 
