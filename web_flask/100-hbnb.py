@@ -1,9 +1,5 @@
 #!/usr/bin/python3
-"""The code creates a Flask app that renders a template
-
-The application listens on 0.0.0.0, port 5000.
-Routes:
-    /hbnb: HBnB home page.
+"""starts a flask web application
 """
 from flask import Flask
 from flask import render_template
